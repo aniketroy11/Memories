@@ -1,10 +1,17 @@
-import React from "react";
+import React, { useEffect } from "react";
 import memories from "./images/memories.png";
 import Posts from './components/posts/Posts'
 import Form from './components/form/Form'
-
-
+import {useDispatch} from 'react-redux'
+import {getPosts} from './actions/post.action'
 const App = () => {
+
+  // const dispatch = useDispatch();
+
+  // useEffect(()=>{
+  //   dispatch(getPosts())
+  // },[dispatch]);
+
   return (
     <section>
       <div className="shadow-xl bg-white rounded-full">
