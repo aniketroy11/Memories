@@ -6,11 +6,7 @@ import {useDispatch} from 'react-redux'
 import {getPosts} from './actions/post.action'
 const App = () => {
 
-  // const dispatch = useDispatch();
-
-  // useEffect(()=>{
-  //   dispatch(getPosts())
-  // },[dispatch]);
+  
 
   return (
     <section>
