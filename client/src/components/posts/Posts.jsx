@@ -1,24 +1,27 @@
-import React, { useEffect } from 'react'
-import Post from './post/Post'
-import { useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import Post from "./post/Post";
+import { useSelector } from "react-redux";
+import { CircularProgress } from "@material-ui/core";
 
 const posts = () => {
-  const posts = useSelector((state)=>state.posts);
-  console.log(posts);
-  useEffect(()=>{
-    
-  },[])
-  
+  const posts = useSelector((state) => state.posts);
+  // console.log(posts)
 
   return (
-    <>
-      {
-        posts.map((post)=>(
-          <Post post= {post}/>
-        ))
-      }
-    </>
-  )
-}
+    
+      !posts.length ? (
+        <CircularProgress />
+      ) : (
+        <div className="flex flex-col gap-4 lg:grid grid-cols-2">
+          {posts.map((post) => (
+            <div key={post._id}>
+              <Post post={post} />
+            </div>
+          ))}
+        </div>
+      )
+    
+  );
+};
 
-export default posts
+export default posts;
