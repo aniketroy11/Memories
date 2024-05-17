@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import FileBase from "react-file-base64";
-import {useDispatch} from 'react-redux'
-import { createPost } from "../../actions/post.action";
+import {useDispatch,useSelector} from 'react-redux'
+import { createPost,updatePost } from "../../actions/post.action";
 
 
-const Form = () => {
+const Form = ({currentId,setCurrentId}) => {
   const [postData, setPostData] = useState({
     creator: "",
     title: "",
@@ -13,12 +13,23 @@ const Form = () => {
     selectedFile: "",
   });
 
+  const post = useSelector((state)=>currentId ? state.posts.find((p)=>p._id===currentId) : null)
+
   const dispatch = useDispatch();
 
+  useEffect(()=>{
+    if(post){
+      setPostData(post);
+    }
+  },[post])
 
   const handleSubmit = (e)=>{
     e.preventDefault();
-    dispatch(createPost(postData));
+    if(currentId){
+      dispatch(updatePost(currentId,postData))
+    }else{
+      dispatch(createPost(postData));
+    }
     clear();
   }
  
@@ -43,7 +54,7 @@ const Form = () => {
           className="p-2  text-black w-full border border-gray-300 focus:outline-none font-mono rounded-xl"
           type="text"
           placeholder="Creator"
-          value={postData.creator}
+          value={postData?.creator}
           onChange={(e) =>
             setPostData({ ...postData, creator: e.target.value })
           }
@@ -52,14 +63,14 @@ const Form = () => {
           className="p-2 text-black w-full border border-gray-300 focus:outline-none font-mono rounded-xl"
           type="text"
           placeholder="Title"
-          value={postData.title}
+          value={postData?.title}
           onChange={(e) => setPostData({ ...postData, title: e.target.value })}
         />
         <input
           className="p-2 text-black w-full border border-gray-300 focus:outline-none font-mono rounded-xl"
           type="text"
           placeholder="Message"
-          value={postData.content}
+          value={postData?.content}
           onChange={(e) =>
             setPostData({ ...postData, content: e.target.value })
           }
@@ -68,8 +79,8 @@ const Form = () => {
           className="p-2 text-black w-full border border-gray-300 focus:outline-none font-mono rounded-xl"
           type="text"
           placeholder="Tags"
-          value={postData.tags}
-          onChange={(e) => setPostData({ ...postData, tags: e.target.value })}
+          value={postData?.tags}
+          onChange={(e) => setPostData({ ...postData, tags: e.target.value.split(',') })}
         />
         <div className="">
           <FileBase

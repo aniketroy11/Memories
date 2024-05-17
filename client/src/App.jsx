@@ -1,11 +1,12 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import memories from "./images/memories.png";
 import Posts from './components/posts/Posts'
 import Form from './components/form/Form'
 import {useDispatch} from 'react-redux'
-import {getPosts} from './actions/post.action'
+import {getPosts,updatePost} from './actions/post.action'
 const App = () => {
 
+  const [currentId,setCurrentId] = useState();
   const dispatch = useDispatch();
 
   useEffect(()=>{
@@ -22,10 +23,10 @@ const App = () => {
       </div>
       <div className="flex flex-1 p-5 gap-2 ">
         <div className="flex-3/4 overflow-y-auto">
-          <Posts/>
+          <Posts setCurrentId={setCurrentId}/>
         </div>
         <div className=" flex-1/4 sticky top-24 h-full">
-          <Form/>
+          <Form currentId = {currentId} setCurrentId={setCurrentId} />
         </div>
       </div>
     </section>
