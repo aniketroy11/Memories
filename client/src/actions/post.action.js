@@ -27,3 +27,20 @@ export const updatePost = (id,post) => async(req,res)=>{
         console.log(error.message);
     }
 }
+
+export const deletePost = (id) => async(req,res)=>{
+    try {
+        const {data} = await api.deletePost(id);
+        dispatch({ type:'DELETE', payload:data })
+    } catch (error) {
+        console.log(error.message);
+    }
+}
+
+export const likePost = (id) => async(req,res)=>{
+    try {
+        
+    } catch (error) {
+        console.log(error.message);
+    }
+}

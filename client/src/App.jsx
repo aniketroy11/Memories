@@ -21,11 +21,11 @@ const App = () => {
           <img src={memories} alt="" className="ml-2" width={40} />
         </div>
       </div>
-      <div className="flex flex-1 p-5 gap-2 ">
-        <div className="flex-3/4 overflow-y-auto">
+      <div className=" grid grid-cols-1 grid md:flex flex-1 p-2 gap-2">
+        <div className="flex-3/4 overflow-y-auto order-2 md:order-1">
           <Posts setCurrentId={setCurrentId}/>
         </div>
-        <div className=" flex-1/4 sticky top-24 h-full">
+        <div className=" flex-1/4 md:sticky md:top-24 md:h-full sm:grid order-1 md:order-2">
           <Form currentId = {currentId} setCurrentId={setCurrentId} />
         </div>
       </div>

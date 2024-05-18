@@ -12,7 +12,7 @@ const posts = ({setCurrentId}) => {
       !posts.length ? (
         <CircularProgress />
       ) : (
-        <div className="flex flex-col gap-4 lg:grid grid-cols-2">
+        <div className="flex flex-col gap-4 lg:grid lg:grid-cols-2">
           {posts.map((post) => (
             <div key={post._id}>
               <Post post={post} setCurrentId={setCurrentId} />
