@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { formatDateDifference } from "../../../lib/utils";
-import { deletePost } from "../../../actions/post.action";
+import { deletePost, likePost } from "../../../actions/post.action";
 const Post = ({ post,setCurrentId }) => {
 
   const dispatch = useDispatch();
@@ -42,9 +42,9 @@ const Post = ({ post,setCurrentId }) => {
               alt="like"
               width={25}
               height={25}
-              onClick={()=>{}}
+              onClick={()=>dispatch(likePost(post._id))}
             />
-            <p>{post.likesCount.length ? post.likesCount.length : null}</p>
+            <p>{post.likesCount}</p>
           </div>
           <div className="flex gap-1 mt-2">
             <img

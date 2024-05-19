@@ -30,11 +30,12 @@ const Form = ({currentId,setCurrentId}) => {
     }else{
       dispatch(createPost(postData));
     }
-    clear();
+    clearHandle();
   }
  
 
-  const clear = () =>{
+  const clearHandle = () =>{
+    setCurrentId(null);
     setPostData({
       creator: "",
       title: "",
@@ -48,7 +49,7 @@ const Form = ({currentId,setCurrentId}) => {
     <div className=" bg-gray-300 p-3 w-full rounded-lg shadow-lg overflow-hidden">
       <form className="flex flex-col gap-4 pb-5" action="" onSubmit={handleSubmit}>
         <h1 className="flex items-center justify-center text-xl pb-5 pt-5">
-          Creating a Memory
+          {post ? "Updating a Memory" : "Creating a Memory"}
         </h1>
         <input
           className="p-2  text-black w-full border border-gray-300 focus:outline-none font-mono rounded-xl"
@@ -92,7 +93,7 @@ const Form = ({currentId,setCurrentId}) => {
           />
         </div>
         <button type="submit" className=" w-full bg-blue-500 border-collapse rounded-md text-white font-semibold p-2">Submit</button>
-        <button onClick={clear}  className=" w-full bg-red-500 border-collapse rounded-md text-white font-semibold p-2">Clear</button>
+        <button onClick={()=>clearHandle}  className=" w-full bg-red-500 border-collapse rounded-md text-white font-semibold p-2">Clear</button>
       </form>
     </div>
   );

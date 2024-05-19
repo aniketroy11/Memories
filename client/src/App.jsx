@@ -11,7 +11,7 @@ const App = () => {
 
   useEffect(()=>{
     dispatch(getPosts())
-  },[dispatch])
+  },[currentId,dispatch])
 
   return (
     <section className="flex flex-col">
